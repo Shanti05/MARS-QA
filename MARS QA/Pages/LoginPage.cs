@@ -29,10 +29,12 @@ namespace MARS_QA.Pages
                 //Identify username textbox and enter valid username
                 IWebElement usernameTextbox = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[1]/input"));
                 usernameTextbox.SendKeys("itshanti05@gmail.com");
+                Thread.Sleep(2500);
 
                 //Identify password textbox and enter valid password
                 IWebElement passwordTextbox = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[2]/input"));
                 passwordTextbox.SendKeys("Anketa$99");
+                Thread.Sleep(2500);
 
                 //identify login button and click on it
                 IWebElement LoginButton = driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/div/div[4]/button"));
@@ -41,13 +43,20 @@ namespace MARS_QA.Pages
             }
             catch (Exception ex)
             {
-
-
-                Assert.Fail("Turnup portal homepage did not launch", ex.Message);
+                Assert.Fail("Unable to launch MARS portal", ex.Message);
             }
 
 
         }
+        public void goToProfilePage(IWebDriver driver)
+        {
+            Thread.Sleep(2500);
+            // Navigate to profile and click on it
+            IWebElement profilePage = driver.FindElement(By.LinkText("Profile"));
+            profilePage.Click();
+            Thread.Sleep(2500);
+        }
 
+       
     }
 }
