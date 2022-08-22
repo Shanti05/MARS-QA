@@ -4,14 +4,14 @@ using NUnit.Framework;
 using System;
 using TechTalk.SpecFlow;
 
-namespace MARS_QA
+namespace MARS_QA.StepDefinition
 {
     [Binding]
     public class EducationStepDefinitions : CommonDriver
     {
         LoginPage loginPageObj = new LoginPage();
         Education EducationObj = new Education();
-       
+
         [Given(@"I add Education details with '([^']*)','([^']*)','([^']*)','([^']*)','([^']*)'")]
 
         public void GivenIAddEducationDetailsWith(string p0, string p1, string p2, string p3, string p4)
@@ -19,7 +19,7 @@ namespace MARS_QA
             EducationObj.AddEducation(driver, p0, p1, p2, p3, p4);
         }
 
-         [Then(@"The new record for Education is created with '([^']*)','([^']*)','([^']*)','([^']*)','([^']*)' successfully")]
+        [Then(@"The new record for Education is created with '([^']*)','([^']*)','([^']*)','([^']*)','([^']*)' successfully")]
         public void ThenTheNewRecordForEducationIsCreatedWithSuccessfully(string p0, string p1, string p2, string p3, string p4)
         {
             string newUniversity = EducationObj.GetEducationTableDetails(driver);
@@ -57,7 +57,7 @@ namespace MARS_QA
             Assert.That(newYear.Contains(p4), "Acutal code and expected code do not match");
             driver.Quit();
         }
-        
+
 
 
         [Given(@"I delete Education details")]
