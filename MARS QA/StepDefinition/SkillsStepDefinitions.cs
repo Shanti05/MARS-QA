@@ -10,8 +10,8 @@ namespace MARS_QA
     [Binding]
     public class SkillsStepDefinitions : CommonDriver
     {
-        LoginPage loginPageObj = new LoginPage();
-        SkillsPage SkillsPageObj = new SkillsPage();
+        LoginPage loginPageObj = new LoginPage(driver);
+        SkillsPage SkillsPageObj = new SkillsPage(driver);
 
         [Given(@"I add skill details with '([^']*)','([^']*)' details")]
         public void GivenIAddSkillDetailsWithDetails(string p0, string p1)
