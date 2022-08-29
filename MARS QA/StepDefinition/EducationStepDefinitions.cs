@@ -9,8 +9,8 @@ namespace MARS_QA.StepDefinition
     [Binding]
     public class EducationStepDefinitions : CommonDriver
     {
-        LoginPage loginPageObj = new LoginPage();
-        Education EducationObj = new Education();
+        LoginPage loginPageObj = new LoginPage(driver);
+        Education EducationObj = new Education(driver);
 
         [Given(@"I add Education details with '([^']*)','([^']*)','([^']*)','([^']*)','([^']*)'")]
 

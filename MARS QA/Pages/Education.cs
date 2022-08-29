@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using MARS_QA.Utilities;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,11 @@ namespace MARS_QA.Pages
 {
     public class Education
     {
+        IWebDriver Driver;
+        public Education(IWebDriver driver)
+        {
+            Driver = driver;
+        }
         public void AddEducation(IWebDriver driver, string Country, string University, string Title, string Degree, string Year)
         {
 
@@ -37,12 +43,12 @@ namespace MARS_QA.Pages
 
             IWebElement AddButton = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[3]/div/input[1]"));
             AddButton.Click();
-            Thread.Sleep(2500);
+            WaitHelpers.WaitToBeClickable(driver, 40, "XPath", "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/div/div[3]/div/input[1]");
 
         }
         public string GetEducationTableDetails(IWebDriver driver)
         {
-            Thread.Sleep(2500);
+            WaitHelpers.WaitIsVisible(driver, 30, "XPath", "//div[@class='ns-box-inner']");
             IWebElement newEducation = driver.FindElement(By.XPath("//body/div[@id='account-profile-section']/div[1]/section[2]/div[1]/div[1]/div[1]/div[3]/form[1]/div[4]/div[1]/div[2]/div[1]/table[1]"));
             return newEducation.GetAttribute("outerText").ToString();
 
@@ -78,12 +84,12 @@ namespace MARS_QA.Pages
 
             IWebElement UpdateTextBox = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody[1]/tr/td/div[3]/input[1]"));
             UpdateTextBox.Click();
-            Thread.Sleep(2500);
+            //WaitHelpers.WaitToBeClickable(driver, 10, "XPath", "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody[1]/tr/td/div[3]/input[1]");
 
         }
         public string GetEditedEducationTableDetails(IWebDriver driver)
         {
-            Thread.Sleep(2500);
+            WaitHelpers.WaitIsVisible(driver, 10, "XPath", "//div[@class='ns-box-inner']");
             IWebElement newEducation = driver.FindElement(By.XPath("//body/div[@id='account-profile-section']/div[1]/section[2]/div[1]/div[1]/div[1]/div[3]/form[1]/div[4]/div[1]/div[2]/div[1]/table[1]"));
             return newEducation.GetAttribute("outerText").ToString();
 
@@ -92,20 +98,20 @@ namespace MARS_QA.Pages
         {
             IWebElement EducationTab = driver.FindElement(By.LinkText("Education"));
             EducationTab.Click();
-            Thread.Sleep(3000);
+            
 
             //delete the record
             Thread.Sleep(2500);
             IWebElement deleteEducation = driver.FindElement(By.XPath("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[6]/span[2]/i"));
-            Thread.Sleep(2500);
+            
 
             deleteEducation.Click();
-            Thread.Sleep(3000);
+            //WaitHelpers.WaitToBeClickable(driver, 40, "XPath", "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/form/div[4]/div/div[2]/div/table/tbody/tr/td[6]/span[2]/i");
 
         }
         public string DeleteEducationAssertion(IWebDriver driver)
         {
-            Thread.Sleep(3000);
+            WaitHelpers.WaitIsVisible(driver, 10, "XPath", "//div[@class='ns-box-inner']");
             IWebElement deleteEducation = driver.FindElement(By.XPath("//body/div[@id='account-profile-section']/div[1]/section[2]/div[1]/div[1]/div[1]/div[3]/form[1]/div[4]/div[1]/div[2]/div[1]/table[1]"));
             return deleteEducation.GetAttribute("outerText").ToString();
         }
